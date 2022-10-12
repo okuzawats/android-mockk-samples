@@ -1,4 +1,7 @@
 package com.okuzawats.mockk
 
-class Calculator {
+class Calculator(
+  private val booleanProvider: BooleanProvider,
+) {
+  fun negative(): Boolean = booleanProvider.provide().not()
 }
