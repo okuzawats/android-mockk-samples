@@ -1,7 +1,7 @@
 package com.okuzawats.mockk
 
 class Calculator(
-  private val booleanProvider: BooleanProvider,
+  private val integerProvider: IntegerProvider,
 ) {
-  fun negative(): Boolean = booleanProvider.provide().not()
+  fun double(): Int = integerProvider.provide() * 2
 }

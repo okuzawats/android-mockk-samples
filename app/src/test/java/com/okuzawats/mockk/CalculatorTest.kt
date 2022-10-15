@@ -11,14 +11,14 @@ import org.junit.Test
 
 class CalculatorTest {
   @MockK
-  lateinit var booleanProvider: BooleanProvider
+  lateinit var integerProvider: IntegerProvider
 
   lateinit var calculator: Calculator
 
   @Before
   fun setUp() {
     MockKAnnotations.init(this)
-    calculator = Calculator(booleanProvider)
+    calculator = Calculator(integerProvider)
   }
 
   @After
@@ -26,14 +26,8 @@ class CalculatorTest {
   }
 
   @Test
-  fun test_negative_returnsFalse_ifTrueProvided() {
-    every { booleanProvider.provide() } returns true
-    assertThat(calculator.negative()).isFalse()
-  }
-
-  @Test
-  fun test_negative_returnsTrue_ifFalseProvided() {
-    every { booleanProvider.provide() } returns false
-    assertThat(calculator.negative()).isTrue()
+  fun test_double_returns_doubled_value_of_provided() {
+    every { integerProvider.provide() } returns 42
+    assertThat(calculator.double()).isEqualTo(84)
   }
 }
