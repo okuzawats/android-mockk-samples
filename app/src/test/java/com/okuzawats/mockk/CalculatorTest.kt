@@ -26,8 +26,15 @@ class CalculatorTest {
   }
 
   @Test
-  fun test_double_returns_doubled_value_of_provided() {
-    every { integerProvider.provide() } returns 42
-    assertThat(calculator.double()).isEqualTo(84)
+  fun doubleReturnsDoubledValueOfProvided() {
+    every {
+      integerProvider.provide()
+    } returns 42
+
+    val actual = calculator.double()
+    val expected = 84
+
+    assertThat(actual)
+      .isEqualTo(expected)
   }
 }
