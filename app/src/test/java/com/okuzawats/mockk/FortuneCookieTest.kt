@@ -35,4 +35,26 @@ class FortuneCookieTest {
     assertThat(actual)
       .isEqualTo(expected)
   }
+
+  @Test
+  fun draw_returnsBadIfDiceRollIsTwo() {
+    every { dice.roll() } returns 2
+
+    val actual = fortuneCookie.draw()
+    val expected = Fortune.Bad
+
+    assertThat(actual)
+      .isEqualTo(expected)
+  }
+
+  @Test
+  fun draw_returnsBadIfDiceRollIsSix() {
+    every { dice.roll() } returns 6
+
+    val actual = fortuneCookie.draw()
+    val expected = Fortune.Bad
+
+    assertThat(actual)
+      .isEqualTo(expected)
+  }
 }
