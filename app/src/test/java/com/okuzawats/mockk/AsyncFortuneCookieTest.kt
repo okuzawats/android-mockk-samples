@@ -63,7 +63,7 @@ class AsyncFortuneCookieTest {
   }
 
   @Test
-  fun draw_callsRoll = runTest {
+  fun draw_callsRoll() = runTest {
     coEvery { dice.roll() } returns 1
 
     fortuneCookie.draw()
