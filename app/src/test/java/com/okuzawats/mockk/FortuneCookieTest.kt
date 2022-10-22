@@ -4,6 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.verify
 
 import org.junit.After
 import org.junit.Before
@@ -56,5 +57,27 @@ class FortuneCookieTest {
 
     assertThat(actual)
       .isEqualTo(expected)
+  }
+
+  @Test
+  fun draw_callsRoll() {
+    every { dice.roll() } returns 1
+
+    fortuneCookie.draw()
+
+    verify {
+      dice.roll()
+    }
+  }
+
+  @Test
+  fun draw_callsRoll_exactlyOnce() {
+    every { dice.roll() } returns 1
+
+    fortuneCookie.draw()
+
+    verify(exactly = 1) {
+      dice.roll()
+    }
   }
 }
