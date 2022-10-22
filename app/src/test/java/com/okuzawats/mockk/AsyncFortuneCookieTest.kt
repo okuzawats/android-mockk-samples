@@ -3,6 +3,7 @@ package com.okuzawats.mockk
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -59,5 +60,16 @@ class AsyncFortuneCookieTest {
 
     assertThat(actual)
       .isEqualTo(expected)
+  }
+
+  @Test
+  fun draw_callsRoll = runTest {
+    coEvery { dice.roll() } returns 1
+
+    fortuneCookie.draw()
+
+    coVerify {
+      dice.roll()
+    }
   }
 }
