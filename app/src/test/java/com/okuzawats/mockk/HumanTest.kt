@@ -4,6 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.verify
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -45,5 +46,14 @@ class HumanTest {
   fun ask_returnsCorrectAnswerAskedWith42() {
     assertThat(human.ask(42))
       .isEqualTo("correct answer")
+  }
+
+  @Test
+  fun ask_callsIsAnswer_withReceivedParameter() {
+    human.ask(42)
+
+    verify {
+      computer.isAnswer(42)
+    }
   }
 }

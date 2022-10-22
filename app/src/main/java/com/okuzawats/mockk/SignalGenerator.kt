@@ -11,7 +11,7 @@ object SignalGenerator {
    */
   fun randomColor(): String {
     // 0 - 2 の乱数を返す。
-    val int =Random.nextInt(from = 0, until = 3)
+    val int = Random.nextInt(from = 0, until = 3)
 
     return when (int) {
       0 -> "Green"
